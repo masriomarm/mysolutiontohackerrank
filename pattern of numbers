@@ -1,0 +1,67 @@
+/*
+problem link
+https://www.hackerrank.com/challenges/printing-pattern-2/problem?h_r=next-challenge&h_v=zen
+Print a pattern of numbers from  to  as shown below. Each of the numbers is separated by a single space.
+
+                            4 4 4 4 4 4 4  
+                            4 3 3 3 3 3 4   
+                            4 3 2 2 2 3 4   
+                            4 3 2 1 2 3 4   
+                            4 3 2 2 2 3 4   
+                            4 3 3 3 3 3 4   
+                            4 4 4 4 4 4 4   
+*/
+                            
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main()
+{
+
+    int n; int nmod;
+    scanf("%d", &n);
+
+    int row,col; int maxcols=2*n-1, maxrows=2*n-1;
+    int valmod;
+
+    for(row=0;row<=ceil(maxrows/2);row++)
+    {
+        valmod=row;
+        nmod=n-row;
+        for(col=0;col<row;col++)
+        {
+            printf("%d ",nmod+valmod); valmod--;
+        }
+        for(col=row;col<maxcols-row-1;col++)
+        {
+            printf("%d ",nmod);
+        }
+        for(col=maxcols-row-1;col<maxcols;col++)
+        {
+            printf("%d ",nmod+valmod); valmod++;
+        }
+        printf("\n");
+    } nmod=2;
+
+    for(row=1;row<=ceil(maxrows/2);row++)
+    {
+        valmod=n-nmod;
+        for(col=0;col<(ceil(maxcols/2)-row);col++)
+        {
+            printf("%d ",nmod+valmod); valmod--;
+        }
+        for(col=(ceil(maxcols/2)-row);col<(ceil(maxcols/2)+row);col++)
+        {
+            printf("%d ",nmod);
+        }
+        for(col=(ceil(maxcols/2)+row);col<maxcols;col++)
+        {
+            printf("%d ",nmod+valmod); valmod++;
+        }
+        printf("\n"); nmod++;
+    }
+
+return 0;
+}
